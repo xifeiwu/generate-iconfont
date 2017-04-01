@@ -1,2 +1,5 @@
 .idea
 node_modules
+app/assets/css/
+app/assets/fonts/
+app/assets/scss/_icons.scss
