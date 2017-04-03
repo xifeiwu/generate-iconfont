@@ -15,7 +15,8 @@ gulp.task('iconfont', function () {
 		fontName: fontName,
 		path: 'app/assets/scss/templates/_icons.scss',
 		targetPath: '../../scss/_icons.scss',
-		fontPath: '../fonts/icons/'
+		fontPath: '../fonts/icons/',
+		centerHorizontally: true
 	}))
 	.pipe(iconfont({
 		fontName: fontName,
