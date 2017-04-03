@@ -18,7 +18,9 @@ gulp.task('iconfont', function () {
 		fontPath: '../fonts/icons/'
 	}))
 	.pipe(iconfont({
-		fontName: fontName
+		fontName: fontName,
+		fontHeight: 1001, //(>= 1000)
+		normalize: true
 	}))
 	.pipe(gulp.dest('app/assets/fonts/icons/'));
 });
