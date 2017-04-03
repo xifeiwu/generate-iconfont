@@ -8,7 +8,7 @@ This an gulp-iconfont and gulp-iconfont-css example for testing purpose of conve
 
 add /gulp-iconfont-example/app/assets/icons folder will automated generate the iconfont and put it on page.
 
-##### scripts:
+### scripts:
 
 **yarn install**
 
