@@ -12,7 +12,7 @@
 </head>
 <body>
 <ul>
-    <li><span class="icon-activation"></span></li>
+    <% _.forEach(icons, function(icon) { %><li><span class="icon-<%- icon %>"></span></li><% }); %>
 </ul>
 </body>
 </html>
