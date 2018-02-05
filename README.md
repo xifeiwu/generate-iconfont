@@ -11,3 +11,6 @@ Add svg icons to */app/assets/icons* folder will automated generate the iconfont
 ![image](https://cloud.githubusercontent.com/assets/5471228/24607781/f6f99190-18a5-11e7-90ef-4032616e2d59.png)
 
 Just simply run **yarn/npm install** and **yarn/npm start**.
+
+fatal error: 'sass/context.h' file not found #include <sass/context.h> #107
+npm install node-sass --registry=http://registry.npm.taobao.org --sass-binary-site=http://npm.taobao.org/mirrors/node-sass

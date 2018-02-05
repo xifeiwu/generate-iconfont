@@ -7,13 +7,14 @@ var sass = require('gulp-sass');
 var server = require('gulp-express');
 var template = require('gulp-template');
 
-var fontName = 'Icons';
+var fontName = 'my-icons';
 
 gulp.task('iconfont', function () {
 	gulp.src(['app/assets/icons/*.svg'])
 	.pipe(iconfontCss({
 		fontName: fontName,
 		path: 'app/assets/scss/templates/_icons.scss',
+		cssClass: 'my-icon',
 		targetPath: '../../scss/_icons.scss',
 		fontPath: '../fonts/icons/',
 		centerHorizontally: true
