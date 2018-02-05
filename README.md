@@ -14,3 +14,7 @@ Just simply run **yarn/npm install** and **yarn/npm start**.
 
 fatal error: 'sass/context.h' file not found #include <sass/context.h> #107
 npm install node-sass --registry=http://registry.npm.taobao.org --sass-binary-site=http://npm.taobao.org/mirrors/node-sass
+
+yarn config set registry http://registry.npm.taobao.org
+yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
+yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass

@@ -10,7 +10,7 @@ var template = require('gulp-template');
 var fontName = 'my-icons';
 
 gulp.task('iconfont', function () {
-  gulp.src(['assets/icons/*.svg'])
+  return gulp.src(['assets/icons/*.svg'])
   .pipe(iconfontCss({
     fontName: fontName,
     path: 'assets/scss/_icons.scss',
@@ -28,7 +28,7 @@ gulp.task('iconfont', function () {
 });
 
 gulp.task('font-scss', ['iconfont'], function() {
-  return gulp.src('assets/scss/my-icon.scss')
+  return gulp.src('assets/scss/my-icons.scss')
       .pipe(gulp.dest('output/assets/scss/'));
 });
 
