@@ -9,52 +9,54 @@ var template = require('gulp-template');
 
 var fontName = 'my-icons';
 
-gulp.task('iconfont', function () {
+gulp.task('iconfont', function() {
   return gulp.src(['assets/icons/*.svg'])
-  .pipe(iconfontCss({
-    fontName: fontName,
-    path: 'assets/scss/_icons.scss',
-    cssClass: 'my-icon',
-    targetPath: '../scss/_icons.scss',
-    fontPath: '../fonts/',
-    centerHorizontally: true
-  }))
-  .pipe(iconfont({
-    fontName: fontName,
-    fontHeight: 1001, //(>= 1000)
-    normalize: true
-  }))
-  .pipe(gulp.dest('output/assets/fonts/'));
+    .pipe(iconfontCss({
+      fontName: fontName,
+      path: 'assets/scss/_icons.scss',
+      cssClass: 'my-icon',
+      targetPath: '../scss/_icons.scss',
+      fontPath: '../fonts/',
+      centerHorizontally: true
+    }))
+    .pipe(iconfont({
+      fontName: fontName,
+      fontHeight: 1001, //(>= 1000)
+      normalize: true
+    }))
+    .pipe(gulp.dest('output/assets/fonts/'));
 });
 
 gulp.task('font-scss', ['iconfont'], function() {
   return gulp.src('assets/scss/my-icons.scss')
-      .pipe(gulp.dest('output/assets/scss/'));
+    .pipe(gulp.dest('output/assets/scss/'));
 });
 
-gulp.task('sass', ['font-scss'], function () {
+gulp.task('sass', ['font-scss'], function() {
   return gulp.src('./output/assets/scss/*.scss')
-  .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest('./output/assets/css'));
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./output/assets/css'));
 });
 
-gulp.task('template', function () {
+gulp.task('template', function() {
   gulp.src('assets/template/index.html')
-  .pipe(template({
-    'icons': fs.readdirSync('./assets/icons/').map(function (name) {
-      return name.replace(/\.[^/.]+$/, '');
-    })
-  }))
-  .pipe(gulp.dest('output'));
+    .pipe(template({
+      'icons': fs.readdirSync('./assets/icons/').filter(name => {
+        return name.endsWith('.svg');
+      }).map(function(name) {
+        return name.replace(/\.[^/.]+$/, '');
+      })
+    }))
+    .pipe(gulp.dest('output'));
 });
 
 gulp.task('clean', function() {
-    return del.sync(['./output/*'], {
-        force: true
-    });
+  return del.sync(['./output/*'], {
+    force: true
+  });
 });
 
-gulp.task('server', ['clean','sass', 'template'], function () {
+gulp.task('server', ['clean', 'sass', 'template'], function() {
   server.run(['app.js']);
   gulp.watch(['**/*.html'], server.notify);
   gulp.watch(['assets/**/*.scss'], ['sass', 'template']);
