@@ -1,10 +1,10 @@
 var fs = require('fs');
+var childProcess = require('child_process');
 var del = require('del');
 var gulp = require('gulp');
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 var sass = require('gulp-sass');
-var server = require('gulp-express');
 var template = require('gulp-template');
 
 var fontName = 'my-icons';
@@ -57,8 +57,16 @@ gulp.task('clean', function() {
 });
 
 gulp.task('server', ['clean', 'sass', 'template'], function() {
-  server.run(['app.js']);
-  gulp.watch(['**/*.html'], server.notify);
+  // server.run(['app.js']);
+  // gulp.watch(['**/*.html'], server.notify);
+  childProcess.exec('nodemon app.js', (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(stdout);
+  });
+  
   gulp.watch(['assets/**/*.scss'], ['sass', 'template']);
   gulp.watch(['assets/**/*.html'], ['sass', 'template']);
   gulp.watch(['assets/**/*.svg'], ['sass', 'template']);
