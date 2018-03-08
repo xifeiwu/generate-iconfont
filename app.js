@@ -17,8 +17,9 @@ app.use(koaStaticCache(
     maxAge: 0,
     // maxAge: 3600 * 24,
     gzip: false,
-    buffer: false,
-    preload: false,
+    // buffer: false,
+    // preload: false,
+    
     // prefix: 'assets',
     // preload: false,
     alias: {
@@ -29,3 +30,4 @@ app.use(koaStaticCache(
 ));
 
 app.listen(9002);
+console.log('start on port 9002')
