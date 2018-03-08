@@ -8,14 +8,23 @@ var sass = require('gulp-sass');
 var template = require('gulp-template');
 var service = require('gulp-koa');
 var nodemon = require('gulp-nodemon');
+const svgSymbols = require(`gulp-svg-symbols`);
 
 var fontName = 'my-icons';
 
+/**
+ * options for gulp-iconfont-css
+ * 1. targetPath
+ * The path where the (S)CSS file should be saved, relative to the path used in gulp.dest() (optional, 
+ * defaults to _icons.css).
+ * 2. path
+ * The template path for (S)CSS
+ */
 gulp.task('iconfont', function() {
-  return gulp.src(['assets/icons/*.svg'])
+  return gulp.src(['assets/svg-font/*.svg'])
     .pipe(iconfontCss({
       fontName: fontName,
-      path: 'assets/scss/_icons.scss',
+      path: 'assets/scss/_icons.scss.model',
       cssClass: 'my-icon',
       targetPath: '../scss/_icons.scss',
       fontPath: '../fonts/',
@@ -29,21 +38,30 @@ gulp.task('iconfont', function() {
     .pipe(gulp.dest('output/assets/fonts/'));
 });
 
-gulp.task('font-scss', ['iconfont'], function() {
+// copy my-icons.scss from assets to output
+gulp.task('copy-scss', function() {
   return gulp.src('assets/scss/my-icons.scss')
     .pipe(gulp.dest('output/assets/scss/'));
 });
 
-gulp.task('sass', ['font-scss'], function() {
+gulp.task('sass', ['copy-scss', 'iconfont'], function() {
   return gulp.src('./output/assets/scss/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./output/assets/css'));
 });
 
+gulp.task('svg-js', () => {
+  gulp.src('assets/svg-js/*.svg').pipe(svgSymbols({
+    slug: function(name) {
+      return `my-icon-${name}`
+    },
+  })).pipe(gulp.dest('output/assets/css'))
+});
+
 gulp.task('template', function() {
   gulp.src('assets/template/index.html')
     .pipe(template({
-      'icons': fs.readdirSync('./assets/icons/').filter(name => {
+      'icons': fs.readdirSync('./assets/svg-font/').filter(name => {
         return name.endsWith('.svg');
       }).map(function(name) {
         return name.replace(/\.[^/.]+$/, '');
@@ -58,7 +76,7 @@ gulp.task('clean', function() {
   });
 });
 
-gulp.task('server', ['clean', 'sass', 'template'], function() {
+gulp.task('server', ['clean', 'sass', 'svg-js', 'template'], function() {
   // server.run(['app.js']);
   // gulp.watch(['**/*.html'], server.notify);
   // childProcess.exec('nodemon app.js', (err, stdout, stderr) => {
@@ -77,5 +95,5 @@ gulp.task('server', ['clean', 'sass', 'template'], function() {
 
   gulp.watch(['assets/**/*.scss'], ['sass', 'template']);
   gulp.watch(['assets/**/*.html'], ['sass', 'template']);
-  gulp.watch(['assets/**/*.svg'], ['sass', 'template']);
+  gulp.watch(['assets/svg-font/*.svg'], ['sass', 'template']);
 });
