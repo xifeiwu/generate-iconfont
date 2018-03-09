@@ -27,7 +27,7 @@ gulp.task('iconfont', function() {
       path: 'assets/scss/_icons.scss.model',
       cssClass: 'my-icon',
       targetPath: '../scss/_icons.scss',
-      fontPath: '../fonts/',
+      fontPath: './',
       centerHorizontally: true
     }))
     .pipe(iconfont({
@@ -47,7 +47,7 @@ gulp.task('copy-scss', function() {
 gulp.task('sass', ['copy-scss', 'iconfont'], function() {
   return gulp.src('./output/assets/scss/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./output/assets/css'));
+    .pipe(gulp.dest('./output/assets/fonts'));
 });
 
 gulp.task('svg-symbols', ['clean'], () => {
@@ -57,7 +57,7 @@ gulp.task('svg-symbols', ['clean'], () => {
     },
   }))
   .pipe(myIconJS('my-icons.js'))
-  .pipe(gulp.dest('output/assets/css'))
+  .pipe(gulp.dest('output/assets/fonts'))
 });
 
 gulp.task('template', function() {
