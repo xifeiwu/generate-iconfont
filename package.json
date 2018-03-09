@@ -6,7 +6,9 @@
   "author": "benweizhu <benweizhu@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "gulp server"
+    "start": "gulp server",
+    "gulp-svg-js": "gulp svg-js",
+    "gulp-server": "gulp server"
   },
   "devDependencies": {
     "koa": "^2.2.0",
