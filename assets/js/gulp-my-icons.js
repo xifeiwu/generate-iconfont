@@ -25,12 +25,14 @@ function gulpRename(fileName) {
     let baseName = Path.basename(filePath);
     let content = originalFile._contents.toString();
 
-    originalFile.path = fileName;
-    originalFile._contents = genereateContent(content);
 
     // var file = originalFile.clone({contents: false});
     if (baseName.endsWith('.svg')) {
+      originalFile.path = fileName;
+      originalFile._contents = genereateContent(content);
       callback(null, originalFile);
+    } else {
+      // callback(null, originalFile);
     }
   };
 
@@ -40,7 +42,7 @@ function gulpRename(fileName) {
 
 
 function genereateContent(svg) {
-  let compressed = svg.split('\n').join('').replace(' ', '');
+  let compressed = svg.split('\n').join('');
   let result = `(function(window) {
   var svgSprite = '${compressed}';
   var script = function() {

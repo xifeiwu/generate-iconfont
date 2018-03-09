@@ -63,11 +63,16 @@ gulp.task('svg-js', ['clean'], () => {
 gulp.task('template', function() {
   gulp.src('assets/template/index.html')
     .pipe(template({
-      'icons': fs.readdirSync('./assets/svg-font/').filter(name => {
+      'svgFont': fs.readdirSync('./assets/svg-font/').filter(name => {
         return name.endsWith('.svg');
       }).map(function(name) {
         return name.replace(/\.[^/.]+$/, '');
-      })
+      }),
+      'svgSymbols': fs.readdirSync('./assets/svg-js/').filter(name => {
+        return name.endsWith('.svg');
+      }).map(function(name) {
+        return name.replace(/\.[^/.]+$/, '');
+      }),
     }))
     .pipe(gulp.dest('output'));
 });
@@ -92,7 +97,7 @@ gulp.task('server', ['clean', 'sass', 'svg-js', 'template'], function() {
   // .pipe(service('app.js', {env: {}}));
 
   nodemon({
-    script: 'app.js'
+    script: 'app.js',
   })
 
   gulp.watch(['assets/**/*.scss'], ['sass', 'template']);
