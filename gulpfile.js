@@ -9,7 +9,7 @@ var template = require('gulp-template');
 var service = require('gulp-koa');
 var nodemon = require('gulp-nodemon');
 const svgSymbols = require(`gulp-svg-symbols`);
-
+const myIconJS = require('./assets/js/gulp-my-icons');
 var fontName = 'my-icons';
 
 /**
@@ -50,12 +50,14 @@ gulp.task('sass', ['copy-scss', 'iconfont'], function() {
     .pipe(gulp.dest('./output/assets/css'));
 });
 
-gulp.task('svg-js', () => {
+gulp.task('svg-js', ['clean'], () => {
   gulp.src('assets/svg-js/*.svg').pipe(svgSymbols({
     slug: function(name) {
       return `my-icon-${name}`
     },
-  })).pipe(gulp.dest('output/assets/css'))
+  }))
+  .pipe(myIconJS('my-icons.js'))
+  .pipe(gulp.dest('output/assets/css'))
 });
 
 gulp.task('template', function() {

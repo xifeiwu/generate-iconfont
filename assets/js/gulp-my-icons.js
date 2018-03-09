@@ -1,0 +1,132 @@
+'use strict';
+
+var Stream = require('stream');
+var Path = require('path');
+
+
+function gulpRename(fileName) {
+
+  var stream = new Stream.Transform({
+    objectMode: true
+  });
+
+  stream._transform = function(originalFile, unused, callback) {
+    // console.log(typeof originalFile);
+    // console.log(Object.keys(originalFile));
+    // console.log(originalFile.history);
+    // console.log(originalFile.cwd);
+    // console.log(originalFile.base);
+    // console.log(originalFile.stat);
+    // console.log(originalFile.relative);
+    // console.log(originalFile.path);
+    // console.log(originalFile._contents.toString());
+
+    let filePath = originalFile.relative;
+    let baseName = Path.basename(filePath);
+    let content = originalFile._contents.toString();
+
+    originalFile.path = fileName;
+    originalFile._contents = genereateContent(content);
+
+    // var file = originalFile.clone({contents: false});
+    if (baseName.endsWith('.svg')) {
+      callback(null, originalFile);
+    }
+  };
+
+  return stream;
+}
+
+
+
+function genereateContent(svg) {
+  let compressed = svg.split('\n').join('').replace(' ', '');
+  let result = `(function(window) {
+  var svgSprite = '${compressed}';
+  var script = function() {
+    var scripts = document.getElementsByTagName("script");
+    return scripts[scripts.length - 1]
+  }();
+  var shouldInjectCss = script.getAttribute("data-injectcss");
+  var ready = function(fn) {
+    if (document.addEventListener) {
+      if (~["complete", "loaded", "interactive"].indexOf(document.readyState)) {
+        setTimeout(fn, 0)
+      } else {
+        var loadFn = function() {
+          document.removeEventListener("DOMContentLoaded", loadFn, false);
+          fn()
+        };
+        document.addEventListener("DOMContentLoaded", loadFn, false)
+      }
+    } else if (document.attachEvent) {
+      IEContentLoaded(window, fn)
+    }
+
+    function IEContentLoaded(w, fn) {
+      var d = w.document,
+        done = false,
+        init = function() {
+          if (!done) {
+            done = true;
+            fn()
+          }
+        };
+      var polling = function() {
+        try {
+          d.documentElement.doScroll("left")
+        } catch (e) {
+          setTimeout(polling, 50);
+          return
+        }
+        init()
+      };
+      polling();
+      d.onreadystatechange = function() {
+        if (d.readyState == "complete") {
+          d.onreadystatechange = null;
+          init()
+        }
+      }
+    }
+  };
+  var before = function(el, target) {
+    target.parentNode.insertBefore(el, target)
+  };
+  var prepend = function(el, target) {
+    if (target.firstChild) {
+      before(el, target.firstChild)
+    } else {
+      target.appendChild(el)
+    }
+  };
+
+  function appendSvg() {
+    var div, svg;
+    div = document.createElement("div");
+    div.innerHTML = svgSprite;
+    svgSprite = null;
+    svg = div.getElementsByTagName("svg")[0];
+    if (svg) {
+      svg.setAttribute("aria-hidden", "true");
+      svg.style.position = "absolute";
+      svg.style.width = 0;
+      svg.style.height = 0;
+      svg.style.overflow = "hidden";
+      prepend(svg, document.body)
+    }
+  }
+  if (shouldInjectCss && !window.__iconfont__svg__cssinject__) {
+    window.__iconfont__svg__cssinject__ = true;
+    try {
+      document.write("<style>.svgfont {display: inline-block;width: 1em;height: 1em;fill: currentColor;vertical-align: -0.1em;font-size:16px;}</style>")
+    } catch (e) {
+      console && console.log(e)
+    }
+  }
+  ready(appendSvg)
+})(window)`
+  return new Buffer(result);
+}
+
+module.exports = gulpRename;
