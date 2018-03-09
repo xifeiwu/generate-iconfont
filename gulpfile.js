@@ -50,8 +50,8 @@ gulp.task('sass', ['copy-scss', 'iconfont'], function() {
     .pipe(gulp.dest('./output/assets/css'));
 });
 
-gulp.task('svg-js', ['clean'], () => {
-  gulp.src('assets/svg-js/*.svg').pipe(svgSymbols({
+gulp.task('svg-symbols', ['clean'], () => {
+  gulp.src('assets/svg-symbols/*.svg').pipe(svgSymbols({
     slug: function(name) {
       return `my-icon-${name}`
     },
@@ -68,7 +68,7 @@ gulp.task('template', function() {
       }).map(function(name) {
         return name.replace(/\.[^/.]+$/, '');
       }),
-      'svgSymbols': fs.readdirSync('./assets/svg-js/').filter(name => {
+      'svgSymbols': fs.readdirSync('./assets/svg-symbols/').filter(name => {
         return name.endsWith('.svg');
       }).map(function(name) {
         return name.replace(/\.[^/.]+$/, '');
@@ -83,7 +83,7 @@ gulp.task('clean', function() {
   });
 });
 
-gulp.task('server', ['clean', 'sass', 'svg-js', 'template'], function() {
+gulp.task('server', ['clean', 'sass', 'svg-symbols', 'template'], function() {
   // server.run(['app.js']);
   // gulp.watch(['**/*.html'], server.notify);
   // childProcess.exec('nodemon app.js', (err, stdout, stderr) => {
