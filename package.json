@@ -11,17 +11,18 @@
     "gulp-server": "gulp server"
   },
   "devDependencies": {
-    "koa": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-iconfont": "^8.0.1",
     "gulp-iconfont-css": "^2.1.0",
     "gulp-sass": "^3.1.0",
-    "gulp-template": "^4.0.0"
+    "gulp-template": "^4.0.0",
+    "koa": "^2.2.0"
   },
   "dependencies": {
     "del": "^3.0.0",
     "gulp-koa": "^0.2.0",
     "gulp-nodemon": "^2.2.1",
+    "gulp-rename": "^1.2.3",
     "gulp-svg-symbols": "^3.1.0",
     "koa-static-cache": "^5.1.2",
     "node-sass": "^4.7.2"

@@ -7,6 +7,7 @@ var iconfontCss = require('gulp-iconfont-css');
 var sass = require('gulp-sass');
 var template = require('gulp-template');
 var service = require('gulp-koa');
+var gulpRename = require('gulp-rename');
 var nodemon = require('gulp-nodemon');
 const svgSymbols = require(`gulp-svg-symbols`);
 const myIconJS = require('./assets/js/gulp-my-icons');
@@ -68,6 +69,10 @@ gulp.task('template', function() {
       }).map(function(name) {
         return name.replace(/\.[^/.]+$/, '');
       }),
+    }))
+    .pipe(gulpRename({
+      basename: 'index',
+      extname: '.html'
     }))
     .pipe(gulp.dest('output'));
 });
