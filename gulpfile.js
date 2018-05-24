@@ -10,7 +10,7 @@ var service = require('gulp-koa');
 var nodemon = require('gulp-nodemon');
 const svgSymbols = require(`gulp-svg-symbols`);
 const myIconJS = require('./assets/js/gulp-my-icons');
-var fontName = 'my-icons';
+var projectName = 'my-icons';
 
 /**
  * options for gulp-iconfont-css
@@ -23,15 +23,15 @@ var fontName = 'my-icons';
 gulp.task('iconfont', function() {
   return gulp.src(['assets/svg-font/*.svg'])
     .pipe(iconfontCss({
-      fontName: fontName,
+      fontName: projectName,
       path: 'assets/scss/_icons.scss.model',
-      cssClass: 'my-icon',
-      targetPath: `../scss/${fontName}.scss`,
+      cssClass: projectName,
+      targetPath: `../scss/${projectName}.scss`,
       fontPath: './',
       centerHorizontally: true
     }))
     .pipe(iconfont({
-      fontName: fontName,
+      fontName: projectName,
       fontHeight: 1001, //(>= 1000)
       normalize: true
     }))
@@ -47,16 +47,17 @@ gulp.task('sass', ['iconfont'], function() {
 gulp.task('svg-symbols', () => {
   gulp.src('assets/svg-symbols/*.svg').pipe(svgSymbols({
     slug: function(name) {
-      return `my-icon-${name}`
+      return `${projectName}-${name}`
     },
   }))
-  .pipe(myIconJS('my-icons.js'))
+  .pipe(myIconJS(`${projectName}.js`))
   .pipe(gulp.dest('output/assets/fonts'))
 });
 
 gulp.task('template', function() {
   gulp.src('assets/template/index.html')
     .pipe(template({
+      projectName,
       'svgFont': fs.readdirSync('./assets/svg-font/').filter(name => {
         return name.endsWith('.svg');
       }).map(function(name) {

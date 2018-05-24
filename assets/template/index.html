@@ -1,8 +1,8 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="./assets/fonts/my-icons.css">
-  <script type="text/javascript" src="./assets/fonts/my-icons.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/fonts/<%=projectName%>.css">
+  <script type="text/javascript" src="./assets/fonts/<%=projectName%>.js"></script>
   <style>
   ul {
     display: block;
@@ -25,14 +25,14 @@
   <ul>
     <% _.forEach(svgFont, function(icon) { %>
       <li>
-        <i class="my-icon-<%- icon %>"></i>
+        <i class="<%=projectName%>-<%- icon %>"></i>
         <div class=name><%- icon %></div>
       </li>
       <% }); %>
     <% _.forEach(svgSymbols, function(icon) { %>
       <li>
-        <svg class="my-icon-svg my-icon-<%- icon %>" aria-hidden="true">
-            <use xlink:href="#my-icon-<%- icon %>"></use>
+        <svg class="<%=projectName%>-svg <%=projectName%>-<%- icon %>" aria-hidden="true">
+            <use xlink:href="#<%=projectName%>-<%- icon %>"></use>
         </svg>
         <div class=name><%- icon %></div>
       </li>
