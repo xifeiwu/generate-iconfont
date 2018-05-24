@@ -4,7 +4,12 @@ fork from [gulp-iconfont-example](https://github.com/benweizhu/gulp-iconfont-exa
 
 打包svg格式的图片
 
-**单色的svg**打包到eot, woff格式的字体中，通过class引用
+**为什么要打包svg图片？**
+
+- 可以像字体一样，设置大小，颜色
+- 一次传输，减少网络请求次数
+
+**单色的svg**打包到eot, woff格式的字体中，通过class引用，格式如下：
 
 ```
 <li>
@@ -13,7 +18,7 @@ fork from [gulp-iconfont-example](https://github.com/benweizhu/gulp-iconfont-exa
 </li>
 ```
 
-**多色的svg**将symbol的svg结点加入到body中，通过symbol的id值引用symbol中的svg图片。
+**多色的svg**将symbol的svg结点加入到body中，通过symbol的id值引用symbol中的svg图片，格式如下：
 
 结点样式：
 
@@ -28,12 +33,6 @@ fork from [gulp-iconfont-example](https://github.com/benweizhu/gulp-iconfont-exa
   <use xlink:href="#github"></use>
 </svg>
 ```
-
-**为什么要打包svg图片？**
-
-- 可以像字体一样，设置大小，颜色
-- 一次传输，减少网络请求次数
-
 
 
 ### 项目结构
