@@ -30,4 +30,4 @@ app.use(koaStaticCache(
 ));
 
 app.listen(9002);
-console.log('start on port 9002')
+console.log('start server http://localhost:9002');

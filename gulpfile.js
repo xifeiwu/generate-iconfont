@@ -104,7 +104,7 @@ gulp.task('server', ['build'], function() {
   // .pipe(service('app.js', {env: {}}));
 
   nodemon({
-    script: 'app.js',
+    script: 'server.js',
   })
 
   gulp.watch([`${projectPath}/**/*.svg`], ['sass', 'template']);
