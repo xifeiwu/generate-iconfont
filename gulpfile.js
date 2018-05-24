@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var childProcess = require('child_process');
 var del = require('del');
 var gulp = require('gulp');
@@ -11,7 +12,9 @@ var gulpRename = require('gulp-rename');
 var nodemon = require('gulp-nodemon');
 const svgSymbols = require(`gulp-svg-symbols`);
 const myIconJS = require('./assets/js/gulp-my-icons');
-var projectName = 'my-icons';
+
+const projectName = 'paas-icons';
+const projectPath = path.resolve(__dirname, `projects/${projectName}`)
 
 /**
  * options for gulp-iconfont-css
@@ -22,7 +25,7 @@ var projectName = 'my-icons';
  * The template path for (S)CSS
  */
 gulp.task('iconfont', function() {
-  return gulp.src(['assets/svg-font/*.svg'])
+  return gulp.src([`${projectPath}/svg-font/*.svg`])
     .pipe(iconfontCss({
       fontName: projectName,
       path: 'assets/templates/_icons.scss.tpl',
@@ -46,7 +49,7 @@ gulp.task('sass', ['iconfont'], function() {
 });
 
 gulp.task('svg-symbols', () => {
-  gulp.src('assets/svg-symbols/*.svg').pipe(svgSymbols({
+  gulp.src(`${projectPath}/svg-symbols/*.svg`).pipe(svgSymbols({
     slug: function(name) {
       return `${projectName}-${name}`
     },
@@ -59,12 +62,12 @@ gulp.task('template', function() {
   gulp.src('assets/templates/index.html.tpl')
     .pipe(template({
       projectName,
-      'svgFont': fs.readdirSync('./assets/svg-font/').filter(name => {
+      'svgFont': fs.readdirSync(`${projectPath}/svg-font/`).filter(name => {
         return name.endsWith('.svg');
       }).map(function(name) {
         return name.replace(/\.[^/.]+$/, '');
       }),
-      'svgSymbols': fs.readdirSync('./assets/svg-symbols/').filter(name => {
+      'svgSymbols': fs.readdirSync(`${projectPath}/svg-symbols/`).filter(name => {
         return name.endsWith('.svg');
       }).map(function(name) {
         return name.replace(/\.[^/.]+$/, '');
@@ -102,5 +105,5 @@ gulp.task('server', ['clean', 'sass', 'svg-symbols', 'template'], function() {
 
   gulp.watch(['assets/**/*.scss'], ['sass', 'template']);
   gulp.watch(['assets/**/*.html'], ['sass', 'template']);
-  gulp.watch(['assets/svg-font/*.svg'], ['sass', 'template']);
+  gulp.watch([`${projectPath}/svg-font/*.svg`], ['sass', 'template']);
 });
