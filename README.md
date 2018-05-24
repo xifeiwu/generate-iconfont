@@ -1,20 +1,28 @@
-# gulp-iconfont-example
+fork from [gulp-iconfont-example](https://github.com/benweizhu/gulp-iconfont-example.git)
 
-https://github.com/nfroidure/gulp-iconfont
+### 简介
+将若干svg文件打包成eot, woff格式的字体。
 
-https://github.com/backflip/gulp-iconfont-css
+**在前端，使用字体与使用svg或其它格式的图片对比**
 
-This a gulp-iconfont and gulp-iconfont-css example for the testing purpose of converting svg to iconfont.
+优点：
 
-Add svg icons to */app/assets/icons* folder will automated generate the iconfont and put it on page.
+- 可以设置大小，颜色
+- 一次传输，减少网络请求
 
-![image](https://cloud.githubusercontent.com/assets/5471228/24607781/f6f99190-18a5-11e7-90ef-4032616e2d59.png)
+缺点：
 
-Just simply run **yarn/npm install** and **yarn/npm start**.
+- 字体颜色只能是一种颜色，不支持两种及以上的颜色
 
-fatal error: 'sass/context.h' file not found #include <sass/context.h> #107
-npm install node-sass --registry=http://registry.npm.taobao.org --sass-binary-site=http://npm.taobao.org/mirrors/node-sass
 
-yarn config set registry http://registry.npm.taobao.org
-yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
-yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+**svg打包方案**
+
+按需求：单色svg打包成字体；多个颜色通过svg symbol的方式实现
+
+### 指令
+
+### Reference
+[gulp-iconfont-css](https://www.npmjs.com/package/gulp-iconfont-css)
+[gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
+[gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
+

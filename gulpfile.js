@@ -26,7 +26,7 @@ gulp.task('iconfont', function() {
       fontName: fontName,
       path: 'assets/scss/_icons.scss.model',
       cssClass: 'my-icon',
-      targetPath: '../scss/_icons.scss',
+      targetPath: `../scss/${fontName}.scss`,
       fontPath: './',
       centerHorizontally: true
     }))
@@ -38,19 +38,13 @@ gulp.task('iconfont', function() {
     .pipe(gulp.dest('output/assets/fonts/'));
 });
 
-// copy my-icons.scss from assets to output
-gulp.task('copy-scss', function() {
-  return gulp.src('assets/scss/my-icons.scss')
-    .pipe(gulp.dest('output/assets/scss/'));
-});
-
-gulp.task('sass', ['copy-scss', 'iconfont'], function() {
+gulp.task('sass', ['iconfont'], function() {
   return gulp.src('./output/assets/scss/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./output/assets/fonts'));
 });
 
-gulp.task('svg-symbols', ['clean'], () => {
+gulp.task('svg-symbols', () => {
   gulp.src('assets/svg-symbols/*.svg').pipe(svgSymbols({
     slug: function(name) {
       return `my-icon-${name}`
