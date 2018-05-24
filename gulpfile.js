@@ -86,7 +86,11 @@ gulp.task('clean', function() {
   });
 });
 
-gulp.task('server', ['clean', 'sass', 'svg-symbols', 'template'], function() {
+
+gulp.task('build', ['clean', 'sass', 'svg-symbols', 'template'], function() {
+});
+
+gulp.task('server', ['build'], function() {
   // server.run(['app.js']);
   // gulp.watch(['**/*.html'], server.notify);
   // childProcess.exec('nodemon app.js', (err, stdout, stderr) => {
@@ -103,7 +107,5 @@ gulp.task('server', ['clean', 'sass', 'svg-symbols', 'template'], function() {
     script: 'app.js',
   })
 
-  gulp.watch(['assets/**/*.scss'], ['sass', 'template']);
-  gulp.watch(['assets/**/*.html'], ['sass', 'template']);
-  gulp.watch([`${projectPath}/svg-font/*.svg`], ['sass', 'template']);
+  gulp.watch([`${projectPath}/**/*.svg`], ['sass', 'template']);
 });

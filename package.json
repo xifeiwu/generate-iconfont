@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "gulp server",
-    "gulp-svg-js": "gulp svg-js",
+    "gulp-build": "gulp build",
     "gulp-server": "gulp server"
   },
   "devDependencies": {
