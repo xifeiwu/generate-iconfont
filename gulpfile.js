@@ -24,7 +24,7 @@ gulp.task('iconfont', function() {
   return gulp.src(['assets/svg-font/*.svg'])
     .pipe(iconfontCss({
       fontName: projectName,
-      path: 'assets/scss/_icons.scss.model',
+      path: 'assets/templates/_icons.scss.tpl',
       cssClass: projectName,
       targetPath: `../scss/${projectName}.scss`,
       fontPath: './',
@@ -55,7 +55,7 @@ gulp.task('svg-symbols', () => {
 });
 
 gulp.task('template', function() {
-  gulp.src('assets/template/index.html')
+  gulp.src('assets/templates/index.html.tpl')
     .pipe(template({
       projectName,
       'svgFont': fs.readdirSync('./assets/svg-font/').filter(name => {
