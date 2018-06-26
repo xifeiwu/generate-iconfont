@@ -13,7 +13,7 @@ var nodemon = require('gulp-nodemon');
 const svgSymbols = require(`gulp-svg-symbols`);
 const myIconJS = require('./assets/js/gulp-my-icons');
 
-const projectName = 'paas-icons';
+const projectName = 'paas-icon';
 const projectPath = path.resolve(__dirname, `projects/${projectName}`)
 
 /**
