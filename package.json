@@ -20,11 +20,9 @@
   },
   "dependencies": {
     "del": "^3.0.0",
-    "gulp-koa": "^0.2.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-rename": "^1.2.3",
     "gulp-svg-symbols": "^3.1.0",
-    "koa-static-cache": "^5.1.2",
     "node-sass": "^4.7.2"
   }
 }

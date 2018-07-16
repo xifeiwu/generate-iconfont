@@ -86,7 +86,7 @@ ansi-yellow@^0.1.1:
   dependencies:
     ansi-wrap "0.1.0"
 
-any-promise@^1.0.0, any-promise@^1.1.0:
+any-promise@^1.1.0:
   version "1.3.0"
   resolved "http://registry.npm.taobao.org/any-promise/download/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
 
@@ -526,12 +526,6 @@ component-emitter@^1.2.1:
   version "1.2.1"
   resolved "http://registry.npm.taobao.org/component-emitter/download/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
 
-compressible@^2.0.6:
-  version "2.0.13"
-  resolved "http://registry.npm.taobao.org/compressible/download/compressible-2.0.13.tgz#0d1020ab924b2fdb4d6279875c7d6daba6baa7a9"
-  dependencies:
-    mime-db ">= 1.33.0 < 2"
-
 concat-map@0.0.1:
   version "0.0.1"
   resolved "http://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -690,10 +684,6 @@ deep-equal@~1.0.1:
 deep-extend@^0.5.1:
   version "0.5.1"
   resolved "http://registry.npm.taobao.org/deep-extend/download/deep-extend-0.5.1.tgz#b894a9dd90d3023fbf1c55a394fb858eb2066f1f"
-
-deepmerge@^0.2.10:
-  version "0.2.10"
-  resolved "http://registry.npm.taobao.org/deepmerge/download/deepmerge-0.2.10.tgz#8906bf9e525a4fbf1b203b2afcb4640249821219"
 
 defaults@^1.0.0:
   version "1.0.3"
@@ -1045,10 +1035,6 @@ fs-minipass@^1.2.5:
   dependencies:
     minipass "^2.2.1"
 
-fs-readdir-recursive@^1.0.0:
-  version "1.1.0"
-  resolved "http://registry.npm.taobao.org/fs-readdir-recursive/download/fs-readdir-recursive-1.1.0.tgz#e32fc030a2ccee44a6b5371308da54be0b397d27"
-
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -1308,17 +1294,6 @@ gulp-iconfont@^8.0.1:
     gulp-util "^3.0.7"
     plexer "^1.0.1"
     streamfilter "^1.0.5"
-
-gulp-koa@^0.2.0:
-  version "0.2.0"
-  resolved "http://registry.npm.taobao.org/gulp-koa/download/gulp-koa-0.2.0.tgz#9da2f83d117f91eff65ef387f69f000af2e6d350"
-  dependencies:
-    debug "^2.2.0"
-    deepmerge "^0.2.10"
-    gulp-util "^3.0.6"
-    mkdirp "^0.5.1"
-    os-tmpdir "^1.0.1"
-    through2 "^2.0.0"
 
 gulp-nodemon@^2.2.1:
   version "2.2.1"
@@ -2008,16 +1983,6 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/koa-is-json/download/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
-koa-static-cache@^5.1.2:
-  version "5.1.2"
-  resolved "http://registry.npm.taobao.org/koa-static-cache/download/koa-static-cache-5.1.2.tgz#49b592007157b164f5e9df5b276e305c8be5016a"
-  dependencies:
-    compressible "^2.0.6"
-    debug "^3.1.0"
-    fs-readdir-recursive "^1.0.0"
-    mime-types "^2.1.8"
-    mz "^2.7.0"
-
 koa@^2.2.0:
   version "2.5.1"
   resolved "http://registry.npm.taobao.org/koa/download/koa-2.5.1.tgz#79f8b95f8d72d04fe9a58a8da5ebd6d341103f9c"
@@ -2423,11 +2388,11 @@ micromatch@^3.0.4, micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-"mime-db@>= 1.33.0 < 2", mime-db@~1.33.0:
+mime-db@~1.33.0:
   version "1.33.0"
   resolved "http://registry.npm.taobao.org/mime-db/download/mime-db-1.33.0.tgz#a3492050a5cb9b63450541e39d9788d2272783db"
 
-mime-types@^2.0.7, mime-types@^2.1.12, mime-types@^2.1.8, mime-types@~2.1.17, mime-types@~2.1.18, mime-types@~2.1.7:
+mime-types@^2.0.7, mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.18, mime-types@~2.1.7:
   version "2.1.18"
   resolved "http://registry.npm.taobao.org/mime-types/download/mime-types-2.1.18.tgz#6f323f60a83d11146f831ff11fd66e2fe5503bb8"
   dependencies:
@@ -2503,14 +2468,6 @@ multipipe@^0.1.0, multipipe@^0.1.2:
   resolved "http://registry.npm.taobao.org/multipipe/download/multipipe-0.1.2.tgz#2a8f2ddf70eed564dff2d57f1e1a137d9f05078b"
   dependencies:
     duplexer2 "0.0.2"
-
-mz@^2.7.0:
-  version "2.7.0"
-  resolved "http://registry.npm.taobao.org/mz/download/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
-  dependencies:
-    any-promise "^1.0.0"
-    object-assign "^4.0.1"
-    thenify-all "^1.0.0"
 
 nan@^2.1.0, nan@^2.10.0, nan@^2.9.2:
   version "2.10.0"
@@ -2789,7 +2746,7 @@ os-locale@^1.4.0:
   dependencies:
     lcid "^1.0.0"
 
-os-tmpdir@^1.0.0, os-tmpdir@^1.0.1:
+os-tmpdir@^1.0.0:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/os-tmpdir/download/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
 
@@ -3621,18 +3578,6 @@ term-size@^1.2.0:
   resolved "http://registry.npm.taobao.org/term-size/download/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
   dependencies:
     execa "^0.7.0"
-
-thenify-all@^1.0.0:
-  version "1.6.0"
-  resolved "http://registry.npm.taobao.org/thenify-all/download/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"
-  dependencies:
-    thenify ">= 3.1.0 < 4"
-
-"thenify@>= 3.1.0 < 4":
-  version "3.3.0"
-  resolved "http://registry.npm.taobao.org/thenify/download/thenify-3.3.0.tgz#e69e38a1babe969b0108207978b9f62b88604839"
-  dependencies:
-    any-promise "^1.0.0"
 
 through2@^0.5.0:
   version "0.5.1"
