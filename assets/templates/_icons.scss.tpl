@@ -22,7 +22,7 @@
 }
 
 [class^="<%= fontName %>-"] {
-  font-size: 24px;
+  font-size: 100%;
 }
 
 
