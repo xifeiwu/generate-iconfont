@@ -14,7 +14,7 @@
     display: inline-block;
     width: 20%;
     text-align: center;
-    width: 90px;
+    width: 160px;
     margin: 5px 0px;
   }
   </style>
