@@ -22,7 +22,16 @@
 }
 
 [class^="<%= fontName %>-"] {
-  font-size: 100%;
+  font-family: paas-icon!important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
 }
 
 
