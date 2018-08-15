@@ -1,7 +1,6 @@
 @font-face {
   font-family: "<%= fontName %>";
-  src: url('<%= fontPath %><%= fontName %>.eot?#iefix') format('eot'),
-  url('<%= fontPath %><%= fontName %>.woff') format('woff');
+  src: url('<%= fontPath %><%= fontName %>.woff') format('woff');
 }
 
 @mixin <%= cssClass%>-styles {
