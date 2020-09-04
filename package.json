@@ -23,6 +23,6 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-rename": "^1.2.3",
     "gulp-svg-symbols": "^3.1.0",
-    "node-sass": "^4.7.2"
+    "node-sass": "^4.13.1"
   }
 }
